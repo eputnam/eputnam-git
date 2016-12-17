@@ -15,7 +15,7 @@
 # Variables
 # ----------
 #
-# Here you should define a list of variables that this module would require.
+# Here you should define a list of variables that this git would require.
 #
 # * `sample variable`
 #  Explanation of how this variable affects the function of this class and if
@@ -42,12 +42,6 @@
 #
 # Copyright 2016 Eric Putnam
 #
-class git (
-  $package     = $git::params::package_name,
-  $ensure      = $git::params::package_ensure,
-  ) inherits ::git::params {
-
-    package { 'git':
-      ensure => $ensure,
-    }
+class git inherits git::params {
+  include ['git::install', 'git::config']
 }

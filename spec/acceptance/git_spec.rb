@@ -12,9 +12,9 @@ describe 'git class' do
       expect(apply_manifest(pp).exit_code).to eq(0)
     end
 
-    describe command('which git') do
-      its(:stdout) { should match /bin/ }
+    describe package('git') do
+      it { is_expected.to be_installed }
     end
-
   end
+
 end
