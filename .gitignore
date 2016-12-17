@@ -1,2 +1,4 @@
 .git/
 pkg/
+Gemfile.lock
+log/

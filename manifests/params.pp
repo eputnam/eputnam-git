@@ -1,5 +1,5 @@
 class git::params {
   $package_ensure   = undef
-  $pacakge_name     = undef
+  $package_name     = undef
   $config_file      = undef
 }
