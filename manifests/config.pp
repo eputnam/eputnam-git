@@ -4,6 +4,6 @@ class git::config (
 
   file { $config_file:
     ensure => file,
-    content => "git config",
+    content => epp('git/config.epp')
   }
 }

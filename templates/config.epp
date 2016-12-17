@@ -1,0 +1,6 @@
+# Git configuration file managed by Puppet
+[user]
+name  =
+email =
+
+[alias]
