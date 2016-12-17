@@ -42,6 +42,15 @@
 #
 # Copyright 2016 Eric Putnam
 #
-class git inherits git::params {
-  include ['git::install', 'git::config']
+class git (
+  $package_ensure = $git::params::package_ensure,
+  $package_name   = $git::params::package_name,
+  $manage_package = $git::params::manage_package
+) inherits git::params {
+
+  validate_bool($manage_package)
+
+  if $manage_package {
+    include git::install
+  }
 }
