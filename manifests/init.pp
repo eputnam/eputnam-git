@@ -8,9 +8,14 @@
 #
 # Document parameters here.
 #
-# * `sample parameter`
-# Explanation of what this parameter affects and what it defaults to.
-# e.g. "Specify one or more upstream ntp servers as an array."
+# * `manage_package`
+# Defaults to true, manage the git package.
+#
+# * `package_ensure`
+# Defaults to present, used only if `manage_package` is true
+#
+# * `package_name`
+# Defaults to 'git', used only if `manage_package` is true
 #
 # Variables
 # ----------
@@ -29,7 +34,8 @@
 #
 # @example
 #    class { 'git':
-#      servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
+#      manage_package => true,
+#      package_ensure => present
 #    }
 #
 # Authors
@@ -51,6 +57,8 @@ class git (
   validate_bool($manage_package)
 
   if $manage_package {
-    include git::install
+    package { $package_name:
+      ensure => $package_ensure,
+    }
   }
 }
