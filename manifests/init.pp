@@ -48,11 +48,14 @@
 #
 # Copyright 2016 Eric Putnam
 #
+# @param manage_package decide whether to manage the git package
+# @param package_ensure ensure for package resource
+# @param package_name name of package if not git
 class git (
-  $package_ensure = $git::params::package_ensure,
-  $package_name   = $git::params::package_name,
-  $manage_package = $git::params::manage_package
-) inherits git::params {
+  $package_ensure = 'installed',
+  $package_name   = 'git',
+  $manage_package = true
+) {
 
   validate_bool($manage_package)
 
