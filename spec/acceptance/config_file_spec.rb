@@ -1,18 +1,15 @@
 require 'spec_helper_acceptance'
+require_relative './globals'
 
 describe 'git::config_file' do
-
-  let(:filepath) { "/root/config" }
-  let(:name) { "Eric Putnam" }
-  let(:email) { "putnam.eric@gmail.com" }
 
   context 'name and email' do
     it 'should contain passed variables' do
       pp = <<-EOM
         class { 'git': }
-        git::config_file { '#{filepath}':
-          user_name  => "#{name}",
-          user_email => "#{email}"
+        git::config_file { '#{$user_config_file}':
+          user_name  => "#{$user_name}",
+          user_email => "#{$user_email}"
          }
       EOM
 
@@ -20,9 +17,11 @@ describe 'git::config_file' do
       expect(apply_manifest(pp).exit_code).to eq(0)
     end
 
-    describe file('/root/config') do
+    describe file($user_config_file) do
       it { is_expected.to be_file }
-      it { is_expected.to contain("Eric") }
+      it { is_expected.to contain($user_name) }
+      it { is_expected.to contain($user_email) }
     end
   end
+
 end
