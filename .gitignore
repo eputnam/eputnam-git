@@ -4,3 +4,5 @@ Gemfile.lock
 log/
 doc/
 .yardoc/
+spec/acceptance/nodesets/
+spec/fixtures

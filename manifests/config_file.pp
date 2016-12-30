@@ -5,6 +5,6 @@ define git::config_file (
   ) {
   file { $config_file:
     ensure => file,
-    content => template('git/config_file.erb')
+    content => epp('git/config_file.epp', { 'user_email' => $user_email, 'user_name' => $user_name })
   }
 }
