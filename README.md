@@ -22,6 +22,7 @@ If you're looking to get all the Git functionality you'll ever need, look no fur
 ### Beginning with git
 
 Start with a basic class declaration to install and manage the Git package:
+
 ```puppet
 class { 'git': }
 ```
@@ -48,6 +49,7 @@ Defaults to present, used only if `manage_package` is true
 
 * `package_name`
 Defaults to 'git', used only if `manage_package` is true
+
 ### git::config_file
 * `config_file`
 Defaults to $name, path to configuration file
@@ -64,4 +66,4 @@ Currently this module has only been verified on Ubuntu 14.04
 
 ## Development
 
-Please feel free to submit issues and PRs at www.github.com/eputnam/git
+Please feel free to submit issues and PRs at www.github.com/eputnam/eputnam-git
