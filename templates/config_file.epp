@@ -1,5 +1,6 @@
 <%- | String $user_name,
-      String $user_email
+      String $user_email,
+      Array $aliases
 | -%>
 
 # Git configuration file managed by Puppet
@@ -7,3 +8,12 @@
 [user]
 name  = <%= $user_name %>
 email = <%= $user_email %>
+
+<% if ($aliases.size > 0) { -%>
+[alias]
+<%   $aliases.each |Hash $alias| { -%>
+<%     $alias.each |String $a, String $cmd| { -%>
+<%= "$a " -%> = '<%= $cmd -%>'
+<%     } -%>
+<%   } -%>
+<% } -%>

@@ -35,7 +35,7 @@ describe 'git::config_file' do
         git::config_file { '#{$user_config_file}':
           user_name  => "#{$user_name}",
           user_email => "#{$user_email}",
-          alias => ['a','add'],
+          aliases    => [{'a' => 'add'}],
         }
       EOM
 
@@ -49,4 +49,21 @@ describe 'git::config_file' do
     end
   end
 
+  it 'should not contain aliases' do
+    pp = <<-EOM
+        class { 'git': }
+        git::config_file { '#{$user_config_file}':
+          user_name  => "#{$user_name}",
+          user_email => "#{$user_email}"
+         }
+      EOM
+
+    expect(apply_manifest(pp).exit_code).to_not eq(1)
+    expect(apply_manifest(pp).exit_code).to eq(0)
+  end
+
+  describe file($user_config_file) do
+    it { is_expected.to be_file }
+    it { is_expected.to_not contain("[alias]") }
+  end
 end
