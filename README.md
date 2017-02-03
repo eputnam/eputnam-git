@@ -35,6 +35,7 @@ After intial declaration, add a configuration file:
 git::config_file { '/home/user/.gitconfig':
   user_email => 'user@example.com',
   user_name  => 'User Smith',
+  aliases    => [{'a' => 'add'}, {'co' => 'checkout'}]
 }
 ```
 
@@ -42,23 +43,33 @@ git::config_file { '/home/user/.gitconfig':
 
 ### git
 * `manage_package`
+_Boolean_
 Defaults to true, manage the git package.
 
 * `package_ensure`
+_ensure_
 Defaults to present, used only if `manage_package` is true
 
 * `package_name`
+_String_
 Defaults to 'git', used only if `manage_package` is true
 
 ### git::config_file
 * `config_file`
+_String_
 Defaults to $name, path to configuration file
 
 * `user_email`
+_String_
 Specify user's email
 
 * `user_name`
+_String_
 Specify the user's name
+
+* `aliases`
+_Array_
+An array of hashes for git aliases
 
 ## Limitations
 
