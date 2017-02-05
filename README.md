@@ -54,18 +54,27 @@ Defaults to present, used only if `manage_package` is true
 _String_
 Defaults to 'git', used only if `manage_package` is true
 
+### git::user
+* `username`
+_String_
+Git user name
+
+* `email`
+_String_
+Specify user's email
+
+* `full_name`
+_String_
+Specify the user's name
+
 ### git::config_file
 * `config_file`
 _String_
 Defaults to $name, path to configuration file
 
-* `user_email`
-_String_
-Specify user's email
-
-* `user_name`
-_String_
-Specify the user's name
+* `user`
+_Git::User_
+Pass in a user resource
 
 * `aliases`
 _Array_
